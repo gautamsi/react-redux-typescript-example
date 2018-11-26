@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { connect, Dispatch } from 'react-redux'
+import { Link } from '@reach/router'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 
 import styled from '../../utils/styled'
 import Page from '../../components/layout/Page'
@@ -66,17 +67,17 @@ class HeroesIndexPage extends React.Component<AllProps> {
     return (
       <DataTable columns={['Hero', 'Pro Picks/Bans*', 'Pro Wins*']} widths={['auto', '', '']}>
         {loading &&
-          data.length === 0 && (
-            <HeroLoading>
-              <td colSpan={3}>Loading...</td>
-            </HeroLoading>
-          )}
+        data.length === 0 && (
+          <HeroLoading>
+            <td colSpan={3}>Loading...</td>
+          </HeroLoading>
+        )}
         {data.map(hero => (
           <tr key={hero.id}>
             <HeroDetail>
               <HeroIcon src={API_ENDPOINT + hero.icon} alt={hero.name} />
               <HeroName>
-                <Link to={`/heroes/${hero.name}`}>{hero.localized_name}</Link>
+                <Link to={hero.name}>{hero.localized_name}</Link>
               </HeroName>
             </HeroDetail>
             <td>

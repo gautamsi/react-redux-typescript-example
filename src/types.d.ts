@@ -7,6 +7,7 @@ declare interface ServiceWorkerConfig {
   onUpdate: (registration: ServiceWorkerRegistration) => void
 }
 
+declare module 'redux-first-history'
 declare module '*.svg'
 declare module '*.png'
 declare module '*.jpg'

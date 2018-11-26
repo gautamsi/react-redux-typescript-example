@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { connect, Dispatch } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
+import { RouteComponentProps } from '@reach/router'
 
 import Page from '../../components/layout/Page'
 import Container from '../../components/layout/Container'
@@ -61,8 +62,8 @@ class ShowHeroesPage extends React.Component<AllProps, State> {
   }
 
   public render() {
-    const { data, loading, match } = this.props
-    const selected = data.find(hero => hero.name === match.params.name)
+    const { data, loading, name } = this.props
+    const selected = data.find(hero => hero.name === name)
 
     return (
       <Page>

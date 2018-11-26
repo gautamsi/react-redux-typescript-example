@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { NavLink } from 'react-router-dom'
 import styled from '../../utils/styled'
 import LayoutContainer from '../../containers/LayoutContainer'
 import Container from './Container'
 import { css } from 'emotion'
+import { Link } from '@reach/router'
 
 interface HeaderProps {
   title: string
@@ -16,13 +16,13 @@ const Header: React.SFC<HeaderProps> = ({ title }) => (
         <Title>{title}</Title>
       </HeaderLeft>
       <HeaderNav>
-        <HeaderNavLink exact to="/" activeClassName={HeaderLinkActive}>
+        <HeaderNavLink to="/" className="" activeClassName={HeaderLinkActive}>
           Home
         </HeaderNavLink>
-        <HeaderNavLink to="/heroes" activeClassName={HeaderLinkActive}>
+        <HeaderNavLink to="/heroes" className="" activeClassName={HeaderLinkActive}>
           Heroes
         </HeaderNavLink>
-        <HeaderNavLink to="/teams" activeClassName={HeaderLinkActive}>
+        <HeaderNavLink to="/teams" className="" activeClassName={HeaderLinkActive}>
           Teams
         </HeaderNavLink>
       </HeaderNav>
@@ -43,6 +43,15 @@ const Header: React.SFC<HeaderProps> = ({ title }) => (
 )
 
 export default Header
+
+let NavLink = ({ className, activeClassName, ...props }) => (
+  <Link
+    getProps={({ isCurrent }) =>
+      isCurrent ? { className: `${className} ${activeClassName}` } : { className }
+    }
+    {...props}
+  />
+)
 
 const Wrapper = styled('header')`
   padding: 0.5rem 1.5rem;

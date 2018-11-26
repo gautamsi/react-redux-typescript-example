@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Provider, connect } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
 import { Store } from 'redux'
 import { History } from 'history'
 import { ThemeProvider } from 'emotion-theming'
@@ -22,7 +21,7 @@ interface PropsFromDispatch {
 // Any additional component props go here.
 interface OwnProps {
   store: Store<ApplicationState>
-  history: History
+  history?: History
 }
 
 // Create an intersection type of the component props and our Redux props.
@@ -30,15 +29,13 @@ type AllProps = PropsFromState & PropsFromDispatch & OwnProps
 
 class Main extends React.Component<AllProps> {
   public render() {
-    const { store, history, theme } = this.props
+    const { store, theme, history } = this.props
 
     return (
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <ThemeProvider theme={themes[theme]}>
-            <Routes />
-          </ThemeProvider>
-        </ConnectedRouter>
+        <ThemeProvider theme={themes[theme]}>
+        <Routes history={history} />
+        </ThemeProvider>
       </Provider>
     )
   }

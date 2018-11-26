@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { connect, Dispatch } from 'react-redux'
-import { RouteComponentProps } from 'react-router'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
+import { RouteComponentProps } from '@reach/router'
 import styled, { Theme } from '../../utils/styled'
 
 import Page from '../../components/layout/Page'
@@ -43,9 +44,9 @@ const formatPlayerIcon = (account_id: number) =>
 
 class ShowTeamsPage extends React.Component<AllProps> {
   public componentDidMount() {
-    const { match } = this.props
+    const { id } = this.props
 
-    this.props.selectTeam(match.params.id)
+    this.props.selectTeam(id)
   }
 
   public componentWillUnmount() {

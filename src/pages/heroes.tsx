@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { RouteComponentProps, Route, Switch } from 'react-router-dom'
+import { Router, RouteComponentProps } from '@reach/router'
 
 import HeroesIndexPage from './heroes/index'
 import ShowHeroesPage from './heroes/show'
@@ -20,13 +20,11 @@ type AllProps = PropsFromState & RouteComponentProps<{}> & ConnectedReduxProps
 
 class HeroesPage extends React.Component<AllProps> {
   public render() {
-    const { match } = this.props
-
     return (
-      <Switch>
-        <Route exact path={match.path + '/'} component={HeroesIndexPage} />
-        <Route path={match.path + '/:name'} component={ShowHeroesPage} />
-      </Switch>
+      <Router>
+        <HeroesIndexPage path="/" />
+        <ShowHeroesPage path=":name" />
+      </Router>
     )
   }
 }

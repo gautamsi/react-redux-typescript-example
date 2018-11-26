@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { LocationProvider, Router } from '@reach/router'
 
 import Root from './components/layout/Root'
 import Header from './components/layout/Header'
@@ -16,15 +16,17 @@ import TeamsPage from './pages/teams'
 // The given `pages/` directory provides an example of a directory structure that's easily
 // code-splittable.
 
-const Routes: React.SFC = () => (
+const Routes: React.SFC = ({history}) => (
   <Root>
-    <Header title="Example App" />
-    <Switch>
-      <Route exact path="/" component={IndexPage} />
-      <Route path="/heroes" component={HeroesPage} />
-      <Route path="/teams" component={TeamsPage} />
-      <Route component={() => <div>Not Found</div>} />
-    </Switch>
+    <LocationProvider history={history}>
+      <Header title="Example App" />
+      <Router>
+        <IndexPage path="/" />
+        <HeroesPage path="heroes/*" />
+        <TeamsPage path="teams/*" />
+        {/* <Route component={() => <div>Not Found</div>} /> */}
+      </Router>
+    </LocationProvider>
   </Root>
 )
 

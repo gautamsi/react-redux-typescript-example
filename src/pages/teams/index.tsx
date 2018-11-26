@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { connect, Dispatch } from 'react-redux'
+import { Link } from '@reach/router'
+import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 import moment from 'moment'
 
 import styled from '../../utils/styled'

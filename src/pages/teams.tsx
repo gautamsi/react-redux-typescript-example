@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { RouteComponentProps, Route, Switch } from 'react-router-dom'
+import { Router } from '@reach/router'
 
 import TeamsIndexPage from './teams/index'
 import ShowTeamsPage from './teams/show'
@@ -14,17 +14,15 @@ interface PropsFromState {
 }
 
 // Combine both state + dispatch props - as well as any props we want to pass - in a union type.
-type AllProps = PropsFromState & RouteComponentProps<{}> & ConnectedReduxProps
+type AllProps = PropsFromState & ConnectedReduxProps
 
 class TeamsPage extends React.Component<AllProps> {
   public render() {
-    const { match } = this.props
-
     return (
-      <Switch>
-        <Route exact path={match.path + '/'} component={TeamsIndexPage} />
-        <Route path={match.path + '/:id'} component={ShowTeamsPage} />
-      </Switch>
+      <Router>
+        <TeamsIndexPage path="/" />
+        <ShowTeamsPage path=":id" />
+      </Router>
     )
   }
 }
